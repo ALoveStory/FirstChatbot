@@ -1,16 +1,18 @@
 """
 Learning building python chatbot
 https://www.youtube.com/watch?v=q5HiD5PNuck - initial tutorial worked as of 10.2023
+Went through documentation to update as of January 2025 - https://platform.openai.com/docs/quickstart
 """
 
-import openai
+from openai import OpenAI
 import os
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 def chat_with_gtp(prompt):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4o-mini",
+        store=True,
         messages=[{"role": "user", "content": prompt}]
     )
 
